@@ -33,7 +33,7 @@ export default function Hero() {
         aria-hidden
       />
 
-      <div className="relative mx-auto grid min-h-[90dvh] max-w-[1180px] grid-cols-1 items-center gap-12 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10 lg:pt-24">
+      <div className="relative mx-auto grid min-h-[90dvh] max-w-[1180px] grid-cols-1 items-center gap-12 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12 lg:pt-24">
         {/* Left: message */}
         <div className="border-l-2 border-accent pl-6 sm:pl-8">
           <motion.div
@@ -90,7 +90,7 @@ export default function Hero() {
           initial={reduce ? false : { opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease }}
-          className="mx-auto w-full max-w-[320px] lg:justify-self-end"
+          className="mx-auto w-full max-w-[220px] lg:justify-self-end"
         >
           <div className="overflow-hidden rounded-[22px] border border-border bg-surface shadow-soft-lg">
             <Image
