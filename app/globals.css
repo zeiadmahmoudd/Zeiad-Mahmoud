@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/*
+  Zeiad Mahmoud - Portfolio design system
+  Theme: Qatar governmental. Deep maroon (#8A1538) + white, warm neutrals,
+  authoritative and official. Flag-serration motif as the signature element.
+*/
+
+@theme {
+  /* Surfaces - official white with a faint warm tint */
+  --color-bg: #ffffff;
+  --color-bg-2: #faf5f7;      /* maroon-tinted band */
+  --color-surface: #ffffff;
+  --color-surface-2: #fbf7f8;
+  --color-border: #ece2e6;
+  --color-border-strong: #dccdd4;
+
+  /* Text - warm near-black */
+  --color-ink: #1c1318;
+  --color-ink-soft: #564a50;
+  --color-ink-muted: #897c82;
+
+  /* Single locked accent: Qatar maroon (with a brighter rose for gradients) */
+  --color-accent: #8a1538;
+  --color-accent-strong: #6c0f2b;  /* hover / pressed */
+  --color-accent-2: #c0265a;       /* gradient end, same family */
+  --color-accent-soft: #f7ebef;    /* tint backgrounds */
+  --color-ink-invert: #fbeef2;     /* text on dark maroon */
+
+  /* Semantic */
+  --color-positive: #2f7d52;
+
+  /* Fonts (Geist from next/font) */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* One radius system */
+  --radius-card: 14px;
+  --radius-control: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-accent) 24%, transparent);
+  color: var(--color-ink);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+  border: 3px solid var(--color-bg);
+}
+
+/* Soft warm/maroon-tinted shadows. */
+.shadow-soft {
+  box-shadow:
+    0 1px 2px rgba(40, 12, 22, 0.05),
+    0 6px 16px -8px rgba(40, 12, 22, 0.12);
+}
+.shadow-soft-lg {
+  box-shadow:
+    0 2px 6px rgba(40, 12, 22, 0.06),
+    0 24px 56px -20px rgba(110, 16, 41, 0.26);
+}
+.shadow-pop {
+  box-shadow:
+    0 2px 6px rgba(40, 12, 22, 0.07),
+    0 18px 40px -16px rgba(110, 16, 41, 0.3);
+}
+
+/* Subtle maroon wash, used behind hero and contact. */
+.bg-aurora {
+  background:
+    radial-gradient(55% 50% at 88% -5%, color-mix(in oklch, var(--color-accent) 13%, transparent), transparent 60%),
+    radial-gradient(45% 45% at 5% 0%, color-mix(in oklch, var(--color-accent) 7%, transparent), transparent 55%);
+}
+
+/* Qatar flag serration: a thin band of maroon triangles. */
+.flag-edge {
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10'%3E%3Cpolygon points='0,10 12,0 24,10' fill='%238a1538'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 24px 10px;
+  background-position: center bottom;
+  opacity: 0.9;
+}
+
+/* Rich maroon gradient for buttons, icon tiles, accents. Adds depth. */
+.bg-accent-grad {
+  background-image: linear-gradient(135deg, var(--color-accent-2) 0%, var(--color-accent) 55%, var(--color-accent-strong) 100%);
+}
+
+/* Deep maroon feature surface (for the architecture / dark sections). */
+.bg-deep {
+  background:
+    radial-gradient(80% 120% at 15% 0%, #3a0a1c 0%, transparent 55%),
+    radial-gradient(70% 100% at 100% 100%, #5a0f2b 0%, transparent 50%),
+    #240712;
+}
+
+/* Frosted glass panel. */
+.glass {
+  background: color-mix(in oklch, #ffffff 70%, transparent);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+.glass-dark {
+  background: color-mix(in oklch, #ffffff 8%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Subtle dotted texture, tinted maroon. For depth on light sections. */
+.bg-dots {
+  background-image: radial-gradient(color-mix(in oklch, var(--color-accent) 18%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Flowing data line for architecture connectors (marching dashes). */
+@keyframes flow {
+  to { stroke-dashoffset: -28; }
+}
+.flow-line {
+  stroke-dasharray: 5 9;
+  animation: flow 1.1s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-line { animation: none; }
+}
+
+/* Soft pulse for live nodes. */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-accent) 45%, transparent); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.pulse-ring {
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring { animation: none; }
+}
+
+/* Focus ring */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Marquee (used at most once on the page) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
